@@ -9,10 +9,6 @@ function App() {
   const [carrinho, setCarrinho] = useState([])
   const [soma, setSoma] = useState("")
 
-  const salvar = () =>{
-    localStorage.setItem("carrinho", JSON.stringify(carrinho))
-  }
-
   const adiconarCarrinho = (produto) => {
     const novoCarrinho = [...carrinho]
     const encontrarProduto = novoCarrinho.find((produtoCarrinho) => produtoCarrinho.id === produto.id)
@@ -39,7 +35,6 @@ function App() {
     setCarrinho(novoCarrinho)
     const calcular = novoCarrinho.reduce((a, b) => b.preco * b.quantidade + a, 0)
     setSoma(calcular)
-    salvar()
   }
 
   const diminuirQuantidade = (produto) => {
@@ -48,7 +43,6 @@ function App() {
     setCarrinho(novoCarrinho)
     const calcular = novoCarrinho.reduce((a, b) => b.preco * b.quantidade + a, 0)
     setSoma(calcular)
-    salvar()
   }
 
   const removerDoCarrinho = (produto) => {
@@ -57,9 +51,12 @@ function App() {
 
     novoCarrinho.splice(encontrarIndex, 1)
     setCarrinho(novoCarrinho)
-    salvar() 
     const calcular = novoCarrinho.reduce((a, b) => b.preco * b.quantidade + a, 0)
     setSoma(calcular)
+  }
+
+  const salvar = () =>{
+    localStorage.setItem("carrinho", JSON.stringify(carrinho))
   }
 
   useEffect(() =>{

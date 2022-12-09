@@ -17,14 +17,20 @@ import {
 import aumentar from "../../assets/aumentar.png"
 import diminuir from "../../assets/diminuir.png"
 import remover from "../../assets/remover.png"
+import { useEffect } from 'react'
 
 export const Carrinho = ({ carrinho, soma, aumentarQuantidade, diminuirQuantidade, removerDoCarrinho, salvar }) => {
+
+    useEffect(()=>{
+        salvar()
+    },[carrinho])
+    
     return (
         <MainContainer>
             <SectionContainer>
                 {carrinho.map((produto) => {
                     return (
-                        <Card onLoad={salvar} key={produto.id}>
+                        <Card key={produto.id}>
                             <div>
                                 <SectionImg src={require("../../assets/" + produto.imagem)} alt={produto.alt} />
                             </div>
