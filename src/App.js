@@ -6,7 +6,7 @@ import { Carrinho } from "./components/Carrinho/Carrinho";
 
 function App() {
   const [tela, setTela] = useState("home")
-  let [carrinho, setCarrinho] = useState([])
+  const [carrinho, setCarrinho] = useState([])
   const [soma, setSoma] = useState("")
 
   const salvar = () =>{
@@ -15,9 +15,8 @@ function App() {
 
   const adiconarCarrinho = (produto) => {
     const novoCarrinho = [...carrinho]
-    salvar()
     const encontrarProduto = novoCarrinho.find((produtoCarrinho) => produtoCarrinho.id === produto.id)
-
+    
     if (!encontrarProduto) {
       const novoProduto = {
         ...produto,
@@ -31,6 +30,7 @@ function App() {
     const calcular = novoCarrinho.reduce((a, b) => b.preco * b.quantidade + a, 0)
     setSoma(calcular)
     setCarrinho(novoCarrinho)
+    salvar()
   }
 
   const aumentarQuantidade = (produto) => {
@@ -63,11 +63,11 @@ function App() {
   }
 
   useEffect(() =>{
-    if(carrinho !== ""){
+    if(localStorage.getItem("carrinho")){
       const carrinhoObj = JSON.parse(localStorage.getItem("carrinho"))
       setCarrinho(carrinhoObj)
-      const calcular = carrinhoObj.reduce((a, b) => b.preco * b.quantidade + a, 0)
-      setSoma(calcular)
+      if(carrinhoObj){const calcular = carrinhoObj.reduce((a, b) => b.preco * b.quantidade + a, 0)
+      setSoma(calcular)}
     }
   },[])
 
