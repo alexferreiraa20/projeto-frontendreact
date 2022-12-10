@@ -17,13 +17,8 @@ import {
 import aumentar from "../../assets/aumentar.png"
 import diminuir from "../../assets/diminuir.png"
 import remover from "../../assets/remover.png"
-import { useEffect } from 'react'
 
 export const Carrinho = ({ carrinho, soma, aumentarQuantidade, diminuirQuantidade, removerDoCarrinho, salvar }) => {
-
-    useEffect(()=>{
-        salvar()
-    },[carrinho])
     
     return (
         <MainContainer>
