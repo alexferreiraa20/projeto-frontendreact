@@ -13,7 +13,7 @@ function App() {
     localStorage.setItem("carrinho", JSON.stringify(novoCarrinho))
   }
   const adiconarCarrinho = (produto) => {
-    
+
     const novoCarrinho = [...carrinho]
     const encontrarProduto = novoCarrinho.find((produtoCarrinho) => produtoCarrinho.id === produto.id)
 
