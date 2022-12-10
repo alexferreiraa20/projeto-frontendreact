@@ -25,6 +25,7 @@ export const ProdutoCard = (props) => {
     setMinimo("")
   }
 
+
   return (
     <MainContainer>
       <SectionFilter>
