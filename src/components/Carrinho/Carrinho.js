@@ -19,7 +19,7 @@ import diminuir from "../../assets/diminuir.png"
 import remover from "../../assets/remover.png"
 
 export const Carrinho = ({ carrinho, soma, aumentarQuantidade, diminuirQuantidade, removerDoCarrinho, salvar }) => {
-    
+
     return (
         <MainContainer>
             <SectionContainer>

@@ -9,7 +9,11 @@ function App() {
   const [carrinho, setCarrinho] = useState([])
   const [soma, setSoma] = useState("")
 
+  const salvar = (novoCarrinho) => {
+    localStorage.setItem("carrinho", JSON.stringify(novoCarrinho))
+  }
   const adiconarCarrinho = (produto) => {
+    
     const novoCarrinho = [...carrinho]
     const encontrarProduto = novoCarrinho.find((produtoCarrinho) => produtoCarrinho.id === produto.id)
 
@@ -26,6 +30,7 @@ function App() {
     const calcular = novoCarrinho.reduce((a, b) => b.preco * b.quantidade + a, 0)
     setSoma(calcular)
     setCarrinho(novoCarrinho)
+    salvar(novoCarrinho)
   }
 
   const aumentarQuantidade = (produto) => {
@@ -34,6 +39,7 @@ function App() {
     setCarrinho(novoCarrinho)
     const calcular = novoCarrinho.reduce((a, b) => b.preco * b.quantidade + a, 0)
     setSoma(calcular)
+    salvar(novoCarrinho)
   }
 
   const diminuirQuantidade = (produto) => {
@@ -42,6 +48,7 @@ function App() {
     setCarrinho(novoCarrinho)
     const calcular = novoCarrinho.reduce((a, b) => b.preco * b.quantidade + a, 0)
     setSoma(calcular)
+    salvar(novoCarrinho)
   }
 
   const removerDoCarrinho = (produto) => {
@@ -52,12 +59,8 @@ function App() {
     setCarrinho(novoCarrinho)
     const calcular = novoCarrinho.reduce((a, b) => b.preco * b.quantidade + a, 0)
     setSoma(calcular)
+    salvar(novoCarrinho)
   }
-
-  
-  useEffect(() => {
-    localStorage.setItem("carrinho", JSON.stringify(carrinho))
-  }, [carrinho])
 
   useEffect(() => {
     if (localStorage.getItem("carrinho")) {
@@ -92,7 +95,7 @@ function App() {
             aumentarQuantidade={aumentarQuantidade}
             diminuirQuantidade={diminuirQuantidade}
             removerDoCarrinho={removerDoCarrinho}
-            
+            salvar={salvar}
           />
           <Footer />
         </>
